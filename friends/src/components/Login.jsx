@@ -11,10 +11,10 @@ export default function Login(props) {
         password: passwordRef.current.value
       })
       .then(res => {
+        console.log(res);
         // SUCCESS! Credentials are valid:
         //   1- Put the token string in local storage under a 'token' key
         localStorage.setItem("token", res.data.payload);
-        console.log(res);
         console.log(res.data.payload);
         // localStorage.setItem('token', JSON.stringify(myArray));
         //   2- Redirect users to the /quotes route
