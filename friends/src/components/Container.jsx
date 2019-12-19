@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route, NavLink, withRouter, Redirect } from "react-router-dom";
 import Login from "./Login";
 import Friends from "./Friends";
-import addFriendForm from "./AddFriend";
+import AddFriendForm from "./AddFriend";
 
 export function Container(props) {
+  // const [newFriend, setNewFriend] = useState([]);
   const onLogout = () => {
     // 1- We need to flush token from local storage
     localStorage.removeItem("token");
     // 2- We need to redirect users to login route props.history
     props.history.push("/");
   };
+
+  const [newFriend, setNewFriend] = useState([
+    {
+      name: "",
+      age: "",
+      email: ""
+    }
+  ]);
+  // const addNewFriend = friend => {
+  //   const newFriend = {
+  //     ...friend,
+  //     id: Date.now()
+  //   };
 
   return (
     <div className="container">
@@ -36,7 +50,12 @@ export function Container(props) {
         <Route exact path="/" component={Login} />
 
         <PrivateRoute path="/friends" component={Friends} />
-        <PrivateRoute path="/add_friend" component={addFriendForm} />
+        <PrivateRoute
+          path="/add_friend"
+          component={AddFriendForm}
+          newFriend={newFriend}
+          setNewFriend={setNewFriend}
+        />
 
         {/* (OPTION B) Create a secure Route for Quotes.
           Alternatively, we could have the Quotes component
