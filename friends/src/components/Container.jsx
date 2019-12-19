@@ -20,12 +20,6 @@ export function Container(props) {
       email: ""
     }
   ]);
-  // const addNewFriend = friend => {
-  //   const newFriend = {
-  //     ...friend,
-  //     id: Date.now()
-  //   };
-
   return (
     <div className="container">
       <nav>
